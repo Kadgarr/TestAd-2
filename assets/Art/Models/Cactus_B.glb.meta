@@ -1,0 +1,75 @@
+{
+  "ver": "2.3.14",
+  "importer": "gltf",
+  "imported": true,
+  "uuid": "622245f4-ead2-4b0d-ad4a-955f86dde131",
+  "files": [],
+  "subMetas": {
+    "46489": {
+      "importer": "gltf-mesh",
+      "uuid": "622245f4-ead2-4b0d-ad4a-955f86dde131@46489",
+      "displayName": "",
+      "id": "46489",
+      "name": "Cactus_B.mesh",
+      "userData": {
+        "gltfIndex": 0,
+        "triangleCount": 48
+      },
+      "ver": "1.1.1",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "2ac7b": {
+      "importer": "gltf-scene",
+      "uuid": "622245f4-ead2-4b0d-ad4a-955f86dde131@2ac7b",
+      "displayName": "",
+      "id": "2ac7b",
+      "name": "Cactus_B.prefab",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.14",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "imageMetas": [],
+    "lods": {
+      "enable": false,
+      "hasBuiltinLOD": false,
+      "options": [
+        {
+          "screenRatio": 0.25,
+          "faceCount": 1
+        },
+        {
+          "screenRatio": 0.125,
+          "faceCount": 0.25
+        },
+        {
+          "screenRatio": 0.01,
+          "faceCount": 0.1
+        }
+      ]
+    },
+    "assetFinder": {
+      "meshes": [
+        "622245f4-ead2-4b0d-ad4a-955f86dde131@46489"
+      ],
+      "skeletons": [],
+      "textures": [],
+      "materials": [],
+      "scenes": [
+        "622245f4-ead2-4b0d-ad4a-955f86dde131@2ac7b"
+      ]
+    }
+  }
+}

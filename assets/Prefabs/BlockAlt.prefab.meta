@@ -2,12 +2,12 @@
   "ver": "1.1.50",
   "importer": "prefab",
   "imported": true,
-  "uuid": "905731cf-9c7b-44ff-b994-9a08ff602324",
+  "uuid": "a8ef1518-c31f-492a-973d-cfeda42a335f",
   "files": [
     ".json"
   ],
   "subMetas": {},
   "userData": {
-    "syncNodeName": "Rock"
+    "syncNodeName": "BlockAlt"
   }
 }

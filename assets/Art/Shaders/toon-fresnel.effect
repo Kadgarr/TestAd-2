@@ -17,6 +17,10 @@ CCEffect %{
         rimStrength:    { value: 1.0, target: rimParams.w, editor: { slide: true, range: [0.0, 1.0], step: 0.01 } }
         shadeDir:       { value: [-0.4, 0.8, 0.45], target: shadeParams.xyz }
         shadeStrength:  { value: 0.35, target: shadeParams.w, editor: { slide: true, range: [0.0, 1.0], step: 0.01 } }
+        rimFadeStart:   { value: 14.0, target: rimFade.x, editor: { tooltip: 'Distance where the rim starts to fade out' } }
+        rimFadeEnd:     { value: 32.0, target: rimFade.y, editor: { tooltip: 'Distance where the rim reaches rimFarStrength' } }
+        rimFarStrength: { value: 0.0, target: rimFade.z, editor: { slide: true, range: [0.0, 1.0], step: 0.01 } }
+        rimEdgesOnly:   { value: 0.0, target: rimFade.w, editor: { slide: true, range: [0.0, 1.0], step: 0.01, tooltip: '1 = rim only where the smoothed normal differs from the flat face (bevels), flat faces never darken' } }
     - &planar-shadow
       vert: planar-shadow-vs:vert
       frag: planar-shadow-fs:frag
@@ -59,6 +63,7 @@ CCProgram toon-ubo %{
     vec4 rimColor;
     vec4 rimParams;
     vec4 shadeParams;
+    vec4 rimFade;
   };
 }%
 
@@ -105,6 +110,7 @@ CCProgram toon-vs %{
 
 CCProgram toon-fs %{
   precision highp float;
+  #pragma extension([GL_OES_standard_derivatives, __VERSION__ < 300])
   #include <builtin/uniforms/cc-global>
   #include <legacy/output-standard>
   #include <toon-ubo>
@@ -144,7 +150,16 @@ CCProgram toon-fs %{
 
     // Fresnel rim -> dark outline.
     float fres = pow(1.0 - clamp(dot(N, V), 0.0, 1.0), rimParams.x);
-    float edge = smoothstep(rimParams.y - rimParams.z, rimParams.y + rimParams.z, fres) * rimParams.w;
+    // Anti-aliased transition: never narrower than ~1.5 px.
+    float w = max(rimParams.z, fwidth(fres) * 1.5);
+    float edge = smoothstep(rimParams.y - w, rimParams.y + w, fres) * rimParams.w;
+    // Edges-only mode: keep the rim where the smoothed normal bends away from the flat face normal (bevels).
+    vec3 faceN = normalize(cross(dFdx(v_worldPos), dFdy(v_worldPos)));
+    float bend = 1.0 - abs(dot(N, faceN));
+    edge *= mix(1.0, smoothstep(0.004, 0.03, bend), rimFade.w);
+    // Fade out with distance: far rims are thinner than a pixel and only add noise.
+    float dist = length(cc_cameraPos.xyz - v_worldPos);
+    edge *= mix(1.0, rimFade.z, smoothstep(rimFade.x, rimFade.y, dist));
     o.rgb = mix(o.rgb, rimColor.rgb, edge);
 
     return CCFragOutput(o);

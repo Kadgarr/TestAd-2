@@ -1,7 +1,7 @@
 [
   {
     "__type__": "cc.Prefab",
-    "_name": "Block",
+    "_name": "CactusSmall",
     "_objFlags": 0,
     "__editorExtras__": {},
     "_native": "",
@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Block",
+    "_name": "CactusSmall",
     "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": null,
@@ -23,18 +23,14 @@
       }
     ],
     "_active": true,
-    "_components": [
-      {
-        "__id__": 7
-      }
-    ],
+    "_components": [],
     "_prefab": {
-      "__id__": 9
+      "__id__": 7
     },
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": 0.45,
+      "y": 0,
       "z": 0
     },
     "_lrot": {
@@ -93,9 +89,9 @@
     },
     "_lscale": {
       "__type__": "cc.Vec3",
-      "x": 0.5,
-      "y": 0.5,
-      "z": 0.5
+      "x": 1,
+      "y": 1,
+      "z": 1
     },
     "_mobility": 0,
     "_layer": 1073741824,
@@ -121,7 +117,7 @@
     },
     "_materials": [
       {
-        "__uuid__": "80c5cae9-f494-4ff8-9034-a7e34c35d8a3",
+        "__uuid__": "aaffae54-e90d-4651-9f02-5c6f5e93a968",
         "__expectedType__": "cc.Material"
       }
     ],
@@ -130,7 +126,7 @@
       "__id__": 5
     },
     "_mesh": {
-      "__uuid__": "af803546-e5e9-4466-a45d-ba98d3797676@85a8b",
+      "__uuid__": "622245f4-ead2-4b0d-ad4a-955f86dde131@46489",
       "__expectedType__": "cc.Mesh"
     },
     "_shadowCastingMode": 1,
@@ -146,7 +142,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "0eyFAPWqxH75U77UFCHSJh"
+    "fileId": "9fBy5ENm1Ouaq/n/1ZJ2To"
   },
   {
     "__type__": "cc.ModelBakeSettings",
@@ -176,31 +172,10 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "cfhpfBW8hJbpzPUGExI10u",
+    "fileId": "89QhMqpxdKt7RIvrOJanJV",
     "instance": null,
     "targetOverrides": null,
     "nestedPrefabInstanceRoots": null
-  },
-  {
-    "__type__": "a20fegwc6xJxLNTlhGMfBYW",
-    "_name": "",
-    "_objFlags": 0,
-    "__editorExtras__": {},
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "__prefab": {
-      "__id__": 8
-    },
-    "pickRadius": 0.65,
-    "bobAmplitude": 0.08,
-    "spinSpeed": 60,
-    "_id": ""
-  },
-  {
-    "__type__": "cc.CompPrefabInfo",
-    "fileId": "64fkc/3P1HTL5YuGp2rdDI"
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -210,7 +185,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "fdSNq2Rm5KVIZE1XnBys0o",
+    "fileId": "93s21CKPlOMZ5lW4Kfsvzx",
     "targetOverrides": null
   }
 ]

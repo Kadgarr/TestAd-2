@@ -1,0 +1,75 @@
+{
+  "ver": "2.3.14",
+  "importer": "gltf",
+  "imported": true,
+  "uuid": "a80d4b30-5e32-405c-80ae-d8634ccaaa8b",
+  "files": [],
+  "subMetas": {
+    "dc5f5": {
+      "importer": "gltf-mesh",
+      "uuid": "a80d4b30-5e32-405c-80ae-d8634ccaaa8b@dc5f5",
+      "displayName": "",
+      "id": "dc5f5",
+      "name": "Block_Gold.mesh",
+      "userData": {
+        "gltfIndex": 0,
+        "triangleCount": 44
+      },
+      "ver": "1.1.1",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "ebc43": {
+      "importer": "gltf-scene",
+      "uuid": "a80d4b30-5e32-405c-80ae-d8634ccaaa8b@ebc43",
+      "displayName": "",
+      "id": "ebc43",
+      "name": "Block_Gold.prefab",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.14",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "imageMetas": [],
+    "lods": {
+      "enable": false,
+      "hasBuiltinLOD": false,
+      "options": [
+        {
+          "screenRatio": 0.25,
+          "faceCount": 1
+        },
+        {
+          "screenRatio": 0.125,
+          "faceCount": 0.25
+        },
+        {
+          "screenRatio": 0.01,
+          "faceCount": 0.1
+        }
+      ]
+    },
+    "assetFinder": {
+      "meshes": [
+        "a80d4b30-5e32-405c-80ae-d8634ccaaa8b@dc5f5"
+      ],
+      "skeletons": [],
+      "textures": [],
+      "materials": [],
+      "scenes": [
+        "a80d4b30-5e32-405c-80ae-d8634ccaaa8b@ebc43"
+      ]
+    }
+  }
+}

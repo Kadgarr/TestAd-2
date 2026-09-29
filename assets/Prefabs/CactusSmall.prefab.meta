@@ -2,12 +2,12 @@
   "ver": "1.1.50",
   "importer": "prefab",
   "imported": true,
-  "uuid": "905731cf-9c7b-44ff-b994-9a08ff602324",
+  "uuid": "75edb4e9-352f-4c8e-a5c8-34bf41dfe0e4",
   "files": [
     ".json"
   ],
   "subMetas": {},
   "userData": {
-    "syncNodeName": "Rock"
+    "syncNodeName": "CactusSmall"
   }
 }
