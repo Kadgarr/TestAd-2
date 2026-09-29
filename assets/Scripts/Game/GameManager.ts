@@ -133,6 +133,7 @@ export class GameManager extends Component {
     private _onResult(win: boolean) {
         this._setState(GameState.Result);
         this.ui?.showResult(win);
+        this.player?.celebrate(win);
         gameEvents.emit(GameEvent.RESULT, win);
         this.scheduleOnce(() => this._showEndCard(win), this.resultToEndCard);
     }

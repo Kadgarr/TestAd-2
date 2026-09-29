@@ -1,10 +1,13 @@
-import { _decorator, Component, EventKeyboard, EventTouch, Input, input, KeyCode, Node } from 'cc';
+import { _decorator, Component, EventKeyboard, EventTouch, Input, input, KeyCode, Node, SkeletalAnimation } from 'cc';
 import { LANES } from './GameConfig';
 const { ccclass, property } = _decorator;
 
+type AnimMode = 'idle' | 'run' | 'carry' | 'stumble' | 'victory';
+
 /**
  * Бег вперёд по -Z и перестроение между линиями свайпом / drag (или стрелками / A-D на ПК).
- * Анимация бега в грейбоксе — кодом (покачивание, конечности). Позже заменится скелетной.
+ * Анимации — скелетные клипы из Hero.glb (Blender): Idle, Run, CarryRun, Stumble, Victory.
+ * Кодом остаётся только крен корпуса при смене линии.
  */
 @ccclass('PlayerController')
 export class PlayerController extends Component {
@@ -20,13 +23,20 @@ export class PlayerController extends Component {
     @property({ tooltip: 'Доля скорости сразу после удара' })
     hitSlowdown = 0.45;
 
-    @property({ type: Node, tooltip: 'Визуальная модель: наклоны и покачивание' })
+    @property({ type: Node, tooltip: 'Визуальная модель: крен при смене линии' })
     visual: Node | null = null;
 
-    @property({ type: Node }) armL: Node | null = null;
-    @property({ type: Node }) armR: Node | null = null;
-    @property({ type: Node }) legL: Node | null = null;
-    @property({ type: Node }) legR: Node | null = null;
+    @property({ type: SkeletalAnimation, tooltip: 'SkeletalAnimation персонажа (Hero)' })
+    anim: SkeletalAnimation | null = null;
+
+    @property({ tooltip: 'Скорость бега, под которую сделан клип Run (при ней клип играет с x1)' })
+    clipRunSpeed = 12;
+
+    @property({ tooltip: 'Длительность кроссфейда между клипами, с' })
+    crossFade = 0.15;
+
+    @property({ tooltip: 'Максимальный крен корпуса при смене линии, градусы' })
+    maxRoll = 15;
 
     lane = 1;
     running = false;
@@ -37,9 +47,10 @@ export class PlayerController extends Component {
     private _speedMul = 1;
     private _touchX = 0;
     private _touching = false;
-    private _t = 0;
     private _carry = false;
-    private _armAngle = 0;
+    private _mode: AnimMode | null = null;
+    private _stumbleLeft = 0;
+    private _roll = 0;
 
     onEnable() {
         input.on(Input.EventType.TOUCH_START, this._onTouchStart, this);
@@ -57,22 +68,40 @@ export class PlayerController extends Component {
         input.off(Input.EventType.KEY_DOWN, this._onKey, this);
     }
 
+    start() {
+        this._play('idle', 0);
+    }
+
     startRun() {
         this.running = true;
         this.inputEnabled = true;
+        this._play(this._carry ? 'carry' : 'run');
     }
 
     stop() {
         this.running = false;
         this.inputEnabled = false;
+        if (this._mode !== 'victory') this._play('idle', 0.25);
+    }
+
+    /** Финал: победа — клип Victory, поражение — Idle. */
+    celebrate(win: boolean) {
+        this.running = false;
+        this.inputEnabled = false;
+        this._play(win ? 'victory' : 'idle', 0.3);
     }
 
     setCarry(carry: boolean) {
         this._carry = carry;
+        if (this.running && (this._mode === 'run' || this._mode === 'carry')) this._play(carry ? 'carry' : 'run');
     }
 
     stumble() {
         this._speedMul = this.hitSlowdown;
+        if (!this.running) return;
+        this._play('stumble', 0.08);
+        const st = this.anim?.getState('Stumble');
+        this._stumbleLeft = st ? st.duration / Math.max(0.01, st.speed) : 0.6;
     }
 
     shiftLane(dir: number) {
@@ -81,7 +110,6 @@ export class PlayerController extends Component {
     }
 
     update(dt: number) {
-        this._t += dt;
         const p = this.node.position;
 
         let z = p.z;
@@ -96,29 +124,44 @@ export class PlayerController extends Component {
         this.lateralVelocity = dt > 0 ? (nx - p.x) / dt : 0;
         this.node.setPosition(nx, p.y, z);
 
-        this._animate(dt);
-    }
-
-    private _animate(dt: number) {
-        const phase = this._t * 12;
-        const s = this.running ? Math.sin(phase) : 0;
+        if (this._mode === 'stumble') {
+            this._stumbleLeft -= dt;
+            if (this._stumbleLeft <= 0 && this.running) this._play(this._carry ? 'carry' : 'run', 0.12);
+        }
+        this._updateRunSpeed();
 
         if (this.visual) {
-            const bob = this.running ? Math.abs(Math.sin(phase)) * 0.08 : 0;
-            const roll = Math.max(-15, Math.min(15, -this.lateralVelocity * 2.5));
-            this.visual.setPosition(0, bob, 0);
-            this.visual.setRotationFromEuler(this.running ? -6 : 0, 0, roll);
+            const target = this.running ? Math.max(-this.maxRoll, Math.min(this.maxRoll, -this.lateralVelocity * 2.5)) : 0;
+            this._roll += (target - this._roll) * Math.min(1, dt * 12);
+            this.visual.setRotationFromEuler(0, 0, this._roll);
         }
+    }
 
-        if (this.legL) this.legL.setRotationFromEuler(s * 35, 0, 0);
-        if (this.legR) this.legR.setRotationFromEuler(-s * 35, 0, 0);
+    private _clipName(m: AnimMode): string {
+        switch (m) {
+            case 'run': return 'Run';
+            case 'carry': return 'CarryRun';
+            case 'stumble': return 'Stumble';
+            case 'victory': return 'Victory';
+            default: return 'Idle';
+        }
+    }
 
-        // Руки: при переноске вытянуты вперёд (+80° вокруг X), иначе машут.
-        const target = this._carry ? 80 : 0;
-        this._armAngle += (target - this._armAngle) * Math.min(1, dt * 10);
-        const swing = this._carry ? s * 4 : s * 35;
-        if (this.armL) this.armL.setRotationFromEuler(this._armAngle - swing, 0, 0);
-        if (this.armR) this.armR.setRotationFromEuler(this._armAngle + swing, 0, 0);
+    private _play(m: AnimMode, fade = this.crossFade) {
+        if (this._mode === m) return;
+        this._mode = m;
+        if (!this.anim) return;
+        const name = this._clipName(m);
+        if (!this.anim.getState(name)) return;
+        if (fade <= 0) this.anim.play(name);
+        else this.anim.crossFade(name, fade);
+        this._updateRunSpeed();
+    }
+
+    private _updateRunSpeed() {
+        if (!this.anim || (this._mode !== 'run' && this._mode !== 'carry')) return;
+        const st = this.anim.getState(this._clipName(this._mode));
+        if (st) st.speed = Math.max(0.3, (this.runSpeed * this._speedMul) / Math.max(0.1, this.clipRunSpeed));
     }
 
     private _onTouchStart(e: EventTouch) {

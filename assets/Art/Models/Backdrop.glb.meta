@@ -1,0 +1,151 @@
+{
+  "ver": "2.3.14",
+  "importer": "gltf",
+  "imported": true,
+  "uuid": "950fcee0-a107-4826-a86f-b504363bb0da",
+  "files": [],
+  "subMetas": {
+    "19ffc": {
+      "importer": "gltf-mesh",
+      "uuid": "950fcee0-a107-4826-a86f-b504363bb0da@19ffc",
+      "displayName": "",
+      "id": "19ffc",
+      "name": "BG_Far.mesh",
+      "userData": {
+        "gltfIndex": 0,
+        "triangleCount": 2
+      },
+      "ver": "1.1.1",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "0c6ce": {
+      "importer": "gltf-mesh",
+      "uuid": "950fcee0-a107-4826-a86f-b504363bb0da@0c6ce",
+      "displayName": "",
+      "id": "0c6ce",
+      "name": "BG_Mid.mesh",
+      "userData": {
+        "gltfIndex": 1,
+        "triangleCount": 2
+      },
+      "ver": "1.1.1",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "8352e": {
+      "importer": "gltf-mesh",
+      "uuid": "950fcee0-a107-4826-a86f-b504363bb0da@8352e",
+      "displayName": "",
+      "id": "8352e",
+      "name": "BG_Near.mesh",
+      "userData": {
+        "gltfIndex": 2,
+        "triangleCount": 2
+      },
+      "ver": "1.1.1",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "a2b29": {
+      "importer": "gltf-mesh",
+      "uuid": "950fcee0-a107-4826-a86f-b504363bb0da@a2b29",
+      "displayName": "",
+      "id": "a2b29",
+      "name": "BG_Pano.mesh",
+      "userData": {
+        "gltfIndex": 3,
+        "triangleCount": 2
+      },
+      "ver": "1.1.1",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "06f7c": {
+      "importer": "gltf-mesh",
+      "uuid": "950fcee0-a107-4826-a86f-b504363bb0da@06f7c",
+      "displayName": "",
+      "id": "06f7c",
+      "name": "BG_Sky.mesh",
+      "userData": {
+        "gltfIndex": 4,
+        "triangleCount": 10
+      },
+      "ver": "1.1.1",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "f6fe1": {
+      "importer": "gltf-scene",
+      "uuid": "950fcee0-a107-4826-a86f-b504363bb0da@f6fe1",
+      "displayName": "",
+      "id": "f6fe1",
+      "name": "Backdrop.prefab",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.14",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "imageMetas": [],
+    "lods": {
+      "enable": false,
+      "hasBuiltinLOD": false,
+      "options": [
+        {
+          "screenRatio": 0.25,
+          "faceCount": 1
+        },
+        {
+          "screenRatio": 0.125,
+          "faceCount": 0.25
+        },
+        {
+          "screenRatio": 0.01,
+          "faceCount": 0.1
+        }
+      ]
+    },
+    "assetFinder": {
+      "meshes": [
+        "950fcee0-a107-4826-a86f-b504363bb0da@19ffc",
+        "950fcee0-a107-4826-a86f-b504363bb0da@0c6ce",
+        "950fcee0-a107-4826-a86f-b504363bb0da@8352e",
+        "950fcee0-a107-4826-a86f-b504363bb0da@a2b29",
+        "950fcee0-a107-4826-a86f-b504363bb0da@06f7c"
+      ],
+      "skeletons": [],
+      "textures": [],
+      "materials": [],
+      "scenes": [
+        "950fcee0-a107-4826-a86f-b504363bb0da@f6fe1"
+      ]
+    }
+  }
+}

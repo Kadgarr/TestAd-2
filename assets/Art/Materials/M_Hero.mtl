@@ -1,0 +1,54 @@
+{
+  "__type__": "cc.Material",
+  "_name": "M_Hero",
+  "_objFlags": 0,
+  "__editorExtras__": {},
+  "_native": "",
+  "_effectAsset": {
+    "__uuid__": "f27a371b-07da-4c1b-a72e-f55f5eeae261",
+    "__expectedType__": "cc.EffectAsset"
+  },
+  "_techIdx": 0,
+  "_defines": [
+    {
+      "USE_VERTEX_COLOR": true,
+      "USE_TEXTURE": true
+    },
+    {}
+  ],
+  "_states": [
+    {
+      "rasterizerState": {},
+      "depthStencilState": {},
+      "blendState": {
+        "targets": [
+          {}
+        ]
+      }
+    },
+    {
+      "rasterizerState": {},
+      "depthStencilState": {},
+      "blendState": {
+        "targets": [
+          {}
+        ]
+      }
+    }
+  ],
+  "_props": [
+    {
+      "mainTexture": {
+        "__uuid__": "b8e126f0-6b3c-475b-a289-f19af0ec12dd@6c48a",
+        "__expectedType__": "cc.Texture2D"
+      },
+      "rimThreshold": 0.45,
+      "rimSoftness": 0.1,
+      "rimStrength": 0.85,
+      "shadeStrength": 0.3,
+      "rimFarStrength": 1,
+      "rimEdgesOnly": 1
+    },
+    {}
+  ]
+}

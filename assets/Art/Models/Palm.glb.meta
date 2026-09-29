@@ -1,0 +1,75 @@
+{
+  "ver": "2.3.14",
+  "importer": "gltf",
+  "imported": true,
+  "uuid": "240ee5a3-aee0-4b2c-8ad6-7c0495b60aaf",
+  "files": [],
+  "subMetas": {
+    "0d8c5": {
+      "importer": "gltf-mesh",
+      "uuid": "240ee5a3-aee0-4b2c-8ad6-7c0495b60aaf@0d8c5",
+      "displayName": "",
+      "id": "0d8c5",
+      "name": "Palm.mesh",
+      "userData": {
+        "gltfIndex": 0,
+        "triangleCount": 164
+      },
+      "ver": "1.1.1",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "b2fb6": {
+      "importer": "gltf-scene",
+      "uuid": "240ee5a3-aee0-4b2c-8ad6-7c0495b60aaf@b2fb6",
+      "displayName": "",
+      "id": "b2fb6",
+      "name": "Palm.prefab",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.14",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "imageMetas": [],
+    "lods": {
+      "enable": false,
+      "hasBuiltinLOD": false,
+      "options": [
+        {
+          "screenRatio": 0.25,
+          "faceCount": 1
+        },
+        {
+          "screenRatio": 0.125,
+          "faceCount": 0.25
+        },
+        {
+          "screenRatio": 0.01,
+          "faceCount": 0.1
+        }
+      ]
+    },
+    "assetFinder": {
+      "meshes": [
+        "240ee5a3-aee0-4b2c-8ad6-7c0495b60aaf@0d8c5"
+      ],
+      "skeletons": [],
+      "textures": [],
+      "materials": [],
+      "scenes": [
+        "240ee5a3-aee0-4b2c-8ad6-7c0495b60aaf@b2fb6"
+      ]
+    }
+  }
+}

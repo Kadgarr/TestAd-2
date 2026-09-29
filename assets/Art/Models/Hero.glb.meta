@@ -1,0 +1,293 @@
+{
+  "ver": "2.3.14",
+  "importer": "gltf",
+  "imported": true,
+  "uuid": "2cbd03be-49c9-4143-9846-66352026b860",
+  "files": [
+    "__original-animation-0.bin",
+    "__original-animation-1.bin",
+    "__original-animation-2.bin",
+    "__original-animation-3.bin",
+    "__original-animation-4.bin"
+  ],
+  "subMetas": {
+    "9c585": {
+      "importer": "gltf-mesh",
+      "uuid": "2cbd03be-49c9-4143-9846-66352026b860@9c585",
+      "displayName": "",
+      "id": "9c585",
+      "name": "Hero.mesh",
+      "userData": {
+        "gltfIndex": 0,
+        "triangleCount": 752
+      },
+      "ver": "1.1.1",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "03151": {
+      "importer": "gltf-animation",
+      "uuid": "2cbd03be-49c9-4143-9846-66352026b860@03151",
+      "displayName": "",
+      "id": "03151",
+      "name": "CarryRun.animation",
+      "userData": {
+        "gltfIndex": 0,
+        "wrapMode": 2,
+        "sample": 30,
+        "span": {
+          "from": 0,
+          "to": 0.6666666865348816
+        },
+        "events": [],
+        "embeddedPlayers": [],
+        "editorExtras": {
+          "embeddedPlayerGroups": []
+        },
+        "speed": 1,
+        "auxiliaryCurves": {}
+      },
+      "ver": "1.0.18",
+      "imported": true,
+      "files": [
+        ".bin"
+      ],
+      "subMetas": {}
+    },
+    "c2696": {
+      "importer": "gltf-animation",
+      "uuid": "2cbd03be-49c9-4143-9846-66352026b860@c2696",
+      "displayName": "",
+      "id": "c2696",
+      "name": "Idle.animation",
+      "userData": {
+        "gltfIndex": 1,
+        "wrapMode": 2,
+        "sample": 30,
+        "span": {
+          "from": 0,
+          "to": 1.3333333730697632
+        },
+        "events": []
+      },
+      "ver": "1.0.18",
+      "imported": true,
+      "files": [
+        ".bin"
+      ],
+      "subMetas": {}
+    },
+    "9292d": {
+      "importer": "gltf-animation",
+      "uuid": "2cbd03be-49c9-4143-9846-66352026b860@9292d",
+      "displayName": "",
+      "id": "9292d",
+      "name": "Run.animation",
+      "userData": {
+        "gltfIndex": 2,
+        "wrapMode": 2,
+        "sample": 30,
+        "span": {
+          "from": 0,
+          "to": 0.6666666865348816
+        },
+        "events": []
+      },
+      "ver": "1.0.18",
+      "imported": true,
+      "files": [
+        ".bin"
+      ],
+      "subMetas": {}
+    },
+    "cf1c9": {
+      "importer": "gltf-animation",
+      "uuid": "2cbd03be-49c9-4143-9846-66352026b860@cf1c9",
+      "displayName": "",
+      "id": "cf1c9",
+      "name": "Stumble.animation",
+      "userData": {
+        "gltfIndex": 3,
+        "wrapMode": 1,
+        "sample": 30,
+        "span": {
+          "from": 0,
+          "to": 0.6000000238418579
+        },
+        "events": []
+      },
+      "ver": "1.0.18",
+      "imported": true,
+      "files": [
+        ".bin"
+      ],
+      "subMetas": {}
+    },
+    "e4391": {
+      "importer": "gltf-animation",
+      "uuid": "2cbd03be-49c9-4143-9846-66352026b860@e4391",
+      "displayName": "",
+      "id": "e4391",
+      "name": "Victory.animation",
+      "userData": {
+        "gltfIndex": 4,
+        "wrapMode": 2,
+        "sample": 30,
+        "span": {
+          "from": 0,
+          "to": 1
+        },
+        "events": []
+      },
+      "ver": "1.0.18",
+      "imported": true,
+      "files": [
+        ".bin"
+      ],
+      "subMetas": {}
+    },
+    "a8dc1": {
+      "importer": "gltf-skeleton",
+      "uuid": "2cbd03be-49c9-4143-9846-66352026b860@a8dc1",
+      "displayName": "",
+      "id": "a8dc1",
+      "name": "HeroRig.skeleton",
+      "userData": {
+        "gltfIndex": 0,
+        "jointsLength": 12
+      },
+      "ver": "1.0.1",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "78ba9": {
+      "importer": "gltf-scene",
+      "uuid": "2cbd03be-49c9-4143-9846-66352026b860@78ba9",
+      "displayName": "",
+      "id": "78ba9",
+      "name": "Hero.prefab",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.14",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "imageMetas": [],
+    "animationImportSettings": [
+      {
+        "name": "CarryRun",
+        "duration": 0.6666666865348816,
+        "fps": 30,
+        "splits": [
+          {
+            "name": "CarryRun",
+            "from": 0,
+            "to": 0.6666666865348816,
+            "wrapMode": 2,
+            "previousId": "03151"
+          }
+        ]
+      },
+      {
+        "name": "Idle",
+        "duration": 1.3333333730697632,
+        "fps": 30,
+        "splits": [
+          {
+            "name": "Idle",
+            "from": 0,
+            "to": 1.3333333730697632,
+            "wrapMode": 2,
+            "previousId": "c2696"
+          }
+        ]
+      },
+      {
+        "name": "Run",
+        "duration": 0.6666666865348816,
+        "fps": 30,
+        "splits": [
+          {
+            "name": "Run",
+            "from": 0,
+            "to": 0.6666666865348816,
+            "wrapMode": 2,
+            "previousId": "9292d"
+          }
+        ]
+      },
+      {
+        "name": "Stumble",
+        "duration": 0.6000000238418579,
+        "fps": 30,
+        "splits": [
+          {
+            "name": "Stumble",
+            "from": 0,
+            "to": 0.6000000238418579,
+            "wrapMode": 1,
+            "previousId": "cf1c9"
+          }
+        ]
+      },
+      {
+        "name": "Victory",
+        "duration": 1,
+        "fps": 30,
+        "splits": [
+          {
+            "name": "Victory",
+            "from": 0,
+            "to": 1,
+            "wrapMode": 2,
+            "previousId": "e4391"
+          }
+        ]
+      }
+    ],
+    "lods": {
+      "enable": false,
+      "hasBuiltinLOD": false,
+      "options": [
+        {
+          "screenRatio": 0.25,
+          "faceCount": 1
+        },
+        {
+          "screenRatio": 0.125,
+          "faceCount": 0.25
+        },
+        {
+          "screenRatio": 0.01,
+          "faceCount": 0.1
+        }
+      ]
+    },
+    "assetFinder": {
+      "meshes": [
+        "2cbd03be-49c9-4143-9846-66352026b860@9c585"
+      ],
+      "skeletons": [
+        "2cbd03be-49c9-4143-9846-66352026b860@a8dc1"
+      ],
+      "textures": [],
+      "materials": [],
+      "scenes": [
+        "2cbd03be-49c9-4143-9846-66352026b860@78ba9"
+      ]
+    }
+  }
+}
