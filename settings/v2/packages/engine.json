@@ -36,16 +36,16 @@
             "_value": false
           },
           "rich-text": {
-            "_value": true
+            "_value": false
           },
           "mask": {
             "_value": false
           },
           "graphics": {
-            "_value": true
+            "_value": false
           },
           "ui-skew": {
-            "_value": true
+            "_value": false
           },
           "affine-transform": {
             "_value": true
@@ -57,11 +57,11 @@
             "_value": true
           },
           "physics": {
-            "_value": true,
+            "_value": false,
             "_option": "physics-ammo"
           },
           "physics-ammo": {
-            "_value": true,
+            "_value": false,
             "_flags": {
               "LOAD_BULLET_MANUALLY": false
             }
@@ -98,13 +98,13 @@
             "_value": false
           },
           "intersection-2d": {
-            "_value": true
+            "_value": false
           },
           "primitive": {
-            "_value": true
+            "_value": false
           },
           "profiler": {
-            "_value": true
+            "_value": false
           },
           "occlusion-query": {
             "_value": false
@@ -131,7 +131,7 @@
             "_value": true
           },
           "websocket": {
-            "_value": true
+            "_value": false
           },
           "websocket-server": {
             "_value": false
@@ -168,7 +168,7 @@
             "_value": false
           },
           "marionette": {
-            "_value": true
+            "_value": false
           },
           "procedural-animation": {
             "_value": false
@@ -191,7 +191,8 @@
           }
         },
         "flags": {
-          "LOAD_BULLET_MANUALLY": false
+          "LOAD_BULLET_MANUALLY": false,
+          "LOAD_SPINE_MANUALLY": false
         },
         "includeModules": [
           "2d",
@@ -202,19 +203,10 @@
           "base",
           "custom-pipeline",
           "gfx-webgl",
-          "graphics",
-          "intersection-2d",
-          "marionette",
           "particle",
-          "physics-ammo",
-          "primitive",
-          "profiler",
-          "rich-text",
           "skeletal-animation",
           "tween",
-          "ui",
-          "ui-skew",
-          "websocket"
+          "ui"
         ],
         "noDeprecatedFeatures": {
           "value": false,
