@@ -96,7 +96,7 @@ export class FinishSequence extends Component {
             block.setParent(slot, true);
             const up = toS.clone().multiplyScalar(1.2);
             tween(block).to(0.07, { scale: up }).to(0.12, { scale: toS }, { easing: 'backOut' }).start();
-            gameEvents.emit(GameEvent.BLOCK_PLACED, placed, total);
+            gameEvents.emit(GameEvent.BLOCK_PLACED, placed, total, slot.worldPosition.clone());
         }).start();
     }
 

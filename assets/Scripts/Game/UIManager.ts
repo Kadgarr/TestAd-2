@@ -45,6 +45,12 @@ export class UIManager extends Component {
     @property({ type: Node })
     retryButton: Node | null = null;
 
+    @property({ type: Node, tooltip: 'Иконка игры на End Card (появляется с отскоком и слегка покачивается)' })
+    endCardIcon: Node | null = null;
+
+    @property({ type: Node, tooltip: 'Лучи за иконкой (медленно вращаются)' })
+    endCardBurst: Node | null = null;
+
     @property({ tooltip: 'Весь End Card кликабелен как CTA' })
     fullscreenCta = true;
 
@@ -111,7 +117,7 @@ export class UIManager extends Component {
     showResult(win: boolean) {
         const l = this.resultLabel;
         if (!l) return;
-        l.string = win ? "PHARAOH'S PALACE BUILT!" : 'NOT ENOUGH BLOCKS!';
+        l.string = win ? "PHARAOH'S PYRAMID BUILT!" : 'NOT ENOUGH BLOCKS!';
         l.color = win ? this.winColor : this.failColor;
         l.node.active = true;
         l.node.setScale(0, 0, 1);
@@ -123,10 +129,32 @@ export class UIManager extends Component {
         if (this.resultLabel) this.resultLabel.node.active = false;
         if (!this.endCard) return;
         this.endCard.active = true;
-        if (this.endCardTitle) this.endCardTitle.string = win ? "PHARAOH'S PALACE BUILT!" : 'NOT ENOUGH BLOCKS!';
+        if (this.endCardTitle) this.endCardTitle.string = win ? "PHARAOH'S PYRAMID BUILT!" : 'NOT ENOUGH BLOCKS!';
         if (this.retryButton) this.retryButton.active = !win;
         this.endCard.setScale(0.85, 0.85, 1);
         tween(this.endCard).to(0.3, { scale: Vec3.ONE }, { easing: 'backOut' }).start();
+        const icon = this.endCardIcon;
+        if (icon) {
+            icon.setScale(0, 0, 1);
+            tween(icon)
+                .delay(0.15)
+                .to(0.45, { scale: Vec3.ONE }, { easing: 'backOut' })
+                .call(() => {
+                    tween(icon)
+                        .to(1.2, { angle: 4 }, { easing: 'sineInOut' })
+                        .to(1.2, { angle: -4 }, { easing: 'sineInOut' })
+                        .union()
+                        .repeatForever()
+                        .start();
+                })
+                .start();
+        }
+        const burst = this.endCardBurst;
+        if (burst) {
+            burst.active = win;
+            burst.angle = 0;
+            tween(burst).by(10, { angle: -360 }).repeatForever().start();
+        }
         if (this.ctaButton) {
             tween(this.ctaButton)
                 .to(0.45, { scale: new Vec3(1.08, 1.08, 1) }, { easing: 'sineInOut' })

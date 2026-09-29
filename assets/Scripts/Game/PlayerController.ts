@@ -1,5 +1,5 @@
 import { _decorator, Component, EventKeyboard, EventTouch, Input, input, KeyCode, Node, SkeletalAnimation } from 'cc';
-import { LANES } from './GameConfig';
+import { gameEvents, GameEvent, LANES } from './GameConfig';
 const { ccclass, property } = _decorator;
 
 type AnimMode = 'idle' | 'run' | 'carry' | 'stumble' | 'victory';
@@ -45,6 +45,11 @@ export class PlayerController extends Component {
     lateralVelocity = 0;
 
     private _speedMul = 1;
+
+    /** Текущая скорость бега вперёд, м/с (0, если стоит). */
+    get currentSpeed(): number {
+        return this.running ? this.runSpeed * this._speedMul : 0;
+    }
     private _touchX = 0;
     private _touching = false;
     private _carry = false;
@@ -106,7 +111,10 @@ export class PlayerController extends Component {
 
     shiftLane(dir: number) {
         if (!this.inputEnabled) return;
-        this.lane = Math.max(0, Math.min(LANES.length - 1, this.lane + dir));
+        const next = Math.max(0, Math.min(LANES.length - 1, this.lane + dir));
+        if (next === this.lane) return;
+        this.lane = next;
+        gameEvents.emit(GameEvent.LANE_CHANGED, next);
     }
 
     update(dt: number) {

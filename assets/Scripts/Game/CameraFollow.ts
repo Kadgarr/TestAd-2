@@ -42,6 +42,10 @@ export class CameraFollow extends Component {
     private _offset = new Vec3();
     private _rot = new Quat();
     private _back = new Vec3();
+    private _base = new Vec3();
+    private _shakeT = 0;
+    private _shakeDur = 0;
+    private _shakeAmp = 0;
 
     onLoad() {
         // Запоминаем ракурс из сцены (Position/Rotation в инспекторе).
@@ -53,6 +57,7 @@ export class CameraFollow extends Component {
             const cp = this.node.worldPosition;
             this._offset.set(cp.x - tp.x * this.followX, cp.y - tp.y, cp.z - tp.z);
         }
+        this._base.set(this.node.worldPosition);
     }
 
     /** Мгновенно поставить камеру в расчётную точку (без сглаживания). */
@@ -61,7 +66,15 @@ export class CameraFollow extends Component {
         this._zoom = this._blocks();
         this._desired(_pos);
         this.node.setWorldPosition(_pos);
+        this._base.set(_pos);
         this.node.setWorldRotation(this._rot);
+    }
+
+    /** Короткая тряска камеры (удар). amount — амплитуда, м. */
+    shake(amount = 0.15, duration = 0.25) {
+        this._shakeAmp = amount;
+        this._shakeDur = duration;
+        this._shakeT = duration;
     }
 
     /** Переезд в трансформ узла-якоря (позиция + поворот). */
@@ -87,11 +100,18 @@ export class CameraFollow extends Component {
         if (this._fixed || !this.target) return;
         this._zoom += (this._blocks() - this._zoom) * Math.min(1, dt * this.zoomSmooth);
         this._desired(_pos);
-        const cur = this.node.worldPosition;
+        const cur = this._base;
         const k = Math.min(1, dt * this.smooth);
         _pos.x = cur.x + (_pos.x - cur.x) * k;
         _pos.y = cur.y + (_pos.y - cur.y) * k;
         // По Z без сглаживания, чтобы камера не отставала от бегущего игрока.
+        this._base.set(_pos);
+        if (this._shakeT > 0) {
+            this._shakeT -= dt;
+            const a = this._shakeAmp * Math.max(0, this._shakeT / this._shakeDur);
+            _pos.x += (Math.random() * 2 - 1) * a;
+            _pos.y += (Math.random() * 2 - 1) * a;
+        }
         this.node.setWorldPosition(_pos);
     }
 

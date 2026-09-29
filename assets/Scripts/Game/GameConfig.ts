@@ -22,12 +22,14 @@ export const GameEvent = {
     STATE_CHANGED: 'state-changed',
     /** (count: number, delta: number) */
     STACK_CHANGED: 'stack-changed',
-    /** (placed: number, total: number) */
+    /** (placed: number, total: number, slotWorldPos?: Vec3) */
     BLOCK_PLACED: 'block-placed',
     /** (win: boolean) */
     RESULT: 'result',
     /** () */
     PLAYER_HIT: 'player-hit',
+    /** (lane: number) — игрок сменил линию */
+    LANE_CHANGED: 'lane-changed',
 };
 
 /** Глобальная шина событий игры. */

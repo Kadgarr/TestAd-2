@@ -3,6 +3,7 @@ import { PlayableSDK } from '../Core/PlayableSDK';
 import { CameraFollow } from './CameraFollow';
 import { Collectible } from './Collectible';
 import { FinishSequence } from './FinishSequence';
+import { FXManager } from './FXManager';
 import { gameEvents, GameEvent, GameState, MIN_BLOCKS_TO_WIN } from './GameConfig';
 import { Obstacle } from './Obstacle';
 import { PlayerController } from './PlayerController';
@@ -18,6 +19,7 @@ export class GameManager extends Component {
     @property({ type: CameraFollow }) cameraFollow: CameraFollow | null = null;
     @property({ type: FinishSequence }) finish: FinishSequence | null = null;
     @property({ type: UIManager }) ui: UIManager | null = null;
+    @property({ type: FXManager }) fx: FXManager | null = null;
 
     @property({ type: Node, tooltip: 'Линия финиша: при пересечении начинается постройка' })
     finishLine: Node | null = null;
@@ -97,6 +99,7 @@ export class GameManager extends Component {
             const cp = c.node.worldPosition;
             if (Math.abs(cp.x - p.x) < c.pickRadius && Math.abs(cp.z - p.z) < c.pickRadius) {
                 c.markCollected();
+                this.fx?.playPickup(cp);
                 this.stack.add(c.node);
             }
         }
@@ -109,6 +112,7 @@ export class GameManager extends Component {
                 o.onHit();
                 this.stack.knock(o.knockCount);
                 this.player.stumble();
+                this.fx?.playHit(p);
                 gameEvents.emit(GameEvent.PLAYER_HIT);
             }
         }
